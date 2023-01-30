@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EZ Emails | Platform Tricks</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile.css">       
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">    
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="index, follow" />    
+  </head>
+  <body class="home">
+	<script src="css/index.js"></script>
+
+
+    <div class="navBar">
+        <div id="navElements">
+            <a href="home.html"><p>EZ Emails</p></a>
+            <a href="tricks.html"><p id="activeNav">Platform Tricks</p></a>        
+            <a href="donate.html"><p>Donate</p></a>         
+        </div>
+    </div>
+
+    <div class="siteBody">
+
+
+
+      <div class="introSection2">
+          Here is a resource of methods used to combat unwanted email client renderings. This is not intended to be a collection of all email buildnig tricks.
+      </div>
+
+
+
+      <div class="contentWrapper">
+
+        <div class="subHeader">
+          Forcing Address/Phone Number Styling
+        </div>
+    
+        <div class="left50">
+          <div class="subHeader2">
+            The Problem
+          </div>
+          <div class="bodyCopy">
+            Mobile devices/clients do a good job of identifying addresses and phone numbers for their users to interact with. They do such a good job you should be using specific code just to combat it.
+          </div>
+        </div>
+    
+        <div class="right50">
+          <div class="subHeader2">
+            The Solution
+          </div>
+          <div class="bodyCopy">       
+            Add the following code inside your header CSS style tag:<br /><br />
+            * [href]:not([style]) {<br />
+              color: inherit !important;<br />
+              text-decoration: none !important;<br />
+          }<br />
+          a[x-apple-data-detectors] {<br />
+              color: inherit !important;<br />
+              text-decoration: none !important;<br />
+              font-size: inherit !important;<br />
+              font-family: inherit !important;<br />
+              font-weight: inherit !important;<br />
+              line-height: inherit !important;<br />
+          }<br /><br />
+          When inline styling fails, this code will overwrite the style that email clients/devices try to force. It should not have any impact on anything else. You may need to change color value from inherit to whatever text color you use.
+          </div>   
+        </div> 
+
+      </div>
+
+
+<!-- Outlook Rendering Section-->
+
+      <div style="background-color: #e2e2e2;" class="contentWrapper">
+
+        <div class="subHeader">
+          Outlook Vertical Image Stretch
+        </div>
+    
+        <div class="left50">
+          <div class="subHeader2">
+            The Problem
+          </div>
+          <div class="bodyCopy">
+            Some Outlook platforms will stretch your image in the Y axis if you are using 2x or larger image size(retina). This will be very noticeable almost all of the time, but occasionally it can be mised if you are not paying close attention to renderings.
+          </div>
+        </div>
+    
+        <div class="right50">
+          <div class="subHeader2">
+            The Solution
+          </div>
+          <div class="bodyCopy">       
+            Using HTML attributes to set the height and width will prevent this from happening. You can also use the inline CSS properties <strong><em>height:auto;</em></strong> and <strong><em>max-height</em></strong> simultaneously to control mobile rendering as long as the width is the same percent as desktop.<br /><br /><strong>Sample Code:<br /></strong> &lt;img alt="This is a sample" border="0" style="display:block;width:100%;max-width:600px;height:auto;max-height:250px;" width="600" height="250" src="imagesource.png" /&gt;
+          </div>   
+        </div> 
+
+      </div>
+
+      <div class="contentWrapper">
+   
+        <div class="subHeader">
+          Outlook Table Width Sretch
+        </div>
+    
+        <div class="left50">
+          <div class="subHeader2">
+            The Problem
+          </div>
+          <div class="bodyCopy">
+            The width of your tables will blow up and stretch to the full width of the Outlook email viewing window. This happens when a table is not constrained by a width set in pixels. Outlook will completely ignore percentage widths then assume the table should take up all available space.
+          </div>
+        </div>
+    
+        <div class="right50">
+          <div class="subHeader2">
+            The Solution
+          </div>
+          <div class="bodyCopy">       
+             Setting pixel-based widths with the HTML width attribute will prevent the table stretch from happening. Also including inline CSS percentage based widths will allow the table to adjust for smaller screens. Outlook will only render with the HTML width and other platforms will prioritize the CSS widths, allowing a single short bit of code to pull double-duty for desktop and mobile without the use of mobile classes.<br /><br /><strong>Sample Code:</strong><br />&lt;table border="0" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px;" width="600"&gt;<br /><br />Nested tables may not need set HTML pixel widths if the parent table is set up properly, but don't ignore nested table widths just because you can. 
+          </div>   
+        </div>  
+
+      </div>   
+      
+<!-- End Outlook Section -->      
+
+
+      <div style="background-color: #e2e2e2;" class="contentWrapper">
+   
+        <div class="subHeader">
+          Dark Mode Colors
+        </div>
+    
+        <div class="left50">
+          <div class="subHeader2">
+            The Problem
+          </div>
+          <div class="bodyCopy">
+            Email clients and devices shift coded colors (backgrounds, borders, text) to be a darker scheme. White becomes black, black becomes grey, etc. This can cause some visual inconcistencies that negatively impact design or branding.
+          </div>
+        </div>
+    
+        <div class="right50">
+          <div class="subHeader2">
+            The Solution
+          </div>
+          <div class="bodyCopy">       
+             This is the most complicated subject of email rendering and it would take a whole course to go over the different methods and solutions. The long story short is that success generally takes a creative team that is knowledgable about how to design emails with dark mode in mind. At the very least you should be working with PNG images that have transparent backgrounds. This is because any images that contain background colors will cause a visual break because they will not change colors with the rest of the coded background after the dark mode shift. <br /><br />Some content colors can be forced via code, but not consistently across all platforms - at least not without hours of building and testing to find out if it is doable for your email design.
+          </div>   
+        </div>  
+
+      </div>        
+
+
+
+    </div>
+
+
+    <div class="footerBar">
+        <div id="footerElements">
+            <p>
+                This tool was built as a community resource to help developers of all skills. If you find it useful please bookmark, tell your friends, and consider donating! We offer this tool for free use through this site, so please do not copy or remarket as your own. That would be a dick move :)
+                <br /><br />
+                We don't track any information or save any images/code - everything you build with the EZ Emails builder is generated on the spot and lost to the ether when you leave.
+                <br /><br />
+                &copy;2022 Cody Kielb
+            </p>
+        </div>
+    </div>
+
+  </body>
+</html>

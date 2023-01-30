@@ -1,0 +1,23 @@
+@media only screen and (max-width:800px){
+    .inputSection {
+        width: 95%;
+        float: none;
+        margin: 0 auto 40px auto;
+    }
+
+    .outputSection {
+        width: 95%;
+        float:none;
+        margin: 0 auto 40px auto;
+    }
+    .left50 {
+        width: 95%;
+        float: none;
+        margin: 0 auto 40px auto;
+    }
+    .right50 {
+        width: 95%;
+        float: none;
+        margin: 0 auto 40px auto;
+    }        
+}
